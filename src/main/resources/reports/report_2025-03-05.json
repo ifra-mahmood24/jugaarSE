@@ -1,0 +1,26 @@
+[ {
+  "itemName" : "Plain Crossant",
+  "itemCost" : 3.0,
+  "count" : 2,
+  "totalCost" : 6.0
+}, {
+  "itemName" : "Caesar Salad",
+  "itemCost" : 3.0,
+  "count" : 10,
+  "totalCost" : 30.0
+}, {
+  "itemName" : "Cheese Bagel",
+  "itemCost" : 4.2,
+  "count" : 2,
+  "totalCost" : 8.4
+}, {
+  "itemName" : "Chicken Caesar Salad",
+  "itemCost" : 5.0,
+  "count" : 18,
+  "totalCost" : 90.0
+}, {
+  "itemName" : "Club Sandwich",
+  "itemCost" : 5.3,
+  "count" : 6,
+  "totalCost" : 31.800001
+} ]

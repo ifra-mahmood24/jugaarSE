@@ -1,0 +1,56 @@
+{
+  "orders" : [ {
+    "orderId" : "ORD-1914399361",
+    "customerId" : "prasanth@as.com",
+    "timeStamp" : "2025-03-11T22:01:49.295411",
+    "orderedItems" : {
+      "F007" : 1,
+      "F001" : 1,
+      "F005" : 1
+    },
+    "offeredItems" : { },
+    "cost" : 7.5,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-87501208",
+    "customerId" : "prasanth@a.com",
+    "timeStamp" : "2025-03-11T21:58:51.545577",
+    "orderedItems" : {
+      "F003" : 1,
+      "B003" : 1
+    },
+    "offeredItems" : { },
+    "cost" : 10.110001,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-515495286",
+    "customerId" : "prasanth@sa.com",
+    "timeStamp" : "2025-03-11T21:56:57.965814",
+    "orderedItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
+    "offeredItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
+    "cost" : 9.110001,
+    "discounted" : true
+  }, {
+    "orderId" : "ORD793800074",
+    "customerId" : "",
+    "timeStamp" : "2025-03-11T21:47:02.163641",
+    "orderedItems" : { },
+    "offeredItems" : { },
+    "cost" : 1.11,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD309263808",
+    "customerId" : "",
+    "timeStamp" : "2025-03-11T21:46:15.721413",
+    "orderedItems" : { },
+    "offeredItems" : { },
+    "cost" : 1.11,
+    "discounted" : false
+  } ]
+}

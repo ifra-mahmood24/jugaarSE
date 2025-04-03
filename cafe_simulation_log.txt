@@ -1,0 +1,44 @@
+2025-04-03 20:56:28 - Log service initialized
+2025-04-03 20:56:28 - Starting Cafe Simulation
+2025-04-03 20:56:29 - Menu loaded with 46 items
+2025-04-03 20:56:29 - Displaying application window
+2025-04-03 20:56:31 - Staff added: Staff 1
+2025-04-03 20:56:31 - Staff added: Staff 2
+2025-04-03 20:56:31 - Staff Staff 2 started working
+2025-04-03 20:56:31 - Staff Staff 1 started working
+2025-04-03 20:56:31 - Customer queue thread started
+2025-04-03 20:56:31 - Simulation started with 2 staff members
+2025-04-03 20:56:31 - Customer added to queue: prasanth
+2025-04-03 20:56:32 - Customer removed from queue: prasanth
+2025-04-03 20:56:32 - Staff Staff 1 is serving customer prasanth
+2025-04-03 20:56:32 - Customer added to queue: prasanth
+2025-04-03 20:56:33 - Customer removed from queue: prasanth
+2025-04-03 20:56:33 - Staff Staff 2 is serving customer prasanth
+2025-04-03 20:56:36 - Customer added to queue: prasanth
+2025-04-03 20:56:39 - Staff Staff 2 completed order for customer prasanth
+2025-04-03 20:56:39 - Customer removed from queue: prasanth
+2025-04-03 20:56:39 - Staff Staff 2 is serving customer prasanth
+2025-04-03 20:56:39 - All customers have been added to the queue
+2025-04-03 20:56:39 - Shop closed
+2025-04-03 20:56:39 - Customer queue thread finished
+2025-04-03 20:56:40 - Staff Staff 1 completed order for customer prasanth
+2025-04-03 20:56:40 - Staff Staff 1 finished working
+2025-04-03 20:56:46 - Staff Staff 2 completed order for customer prasanth
+2025-04-03 20:56:46 - Staff Staff 2 finished working
+2025-04-03 20:57:37 - Staff added: Staff 1
+2025-04-03 20:57:37 - Staff added: Staff 2
+2025-04-03 20:57:37 - Staff Staff 1 started working
+2025-04-03 20:57:37 - Staff Staff 1 finished working
+2025-04-03 20:57:37 - Staff Staff 2 started working
+2025-04-03 20:57:37 - Staff Staff 2 finished working
+2025-04-03 20:57:37 - Simulation started with 2 staff members
+2025-04-03 20:57:37 - Customer queue thread started
+2025-04-03 20:57:37 - Customer added to queue: prasanth
+2025-04-03 20:57:40 - Customer added to queue: prasanth
+2025-04-03 20:57:41 - Customer added to queue: prasanth
+2025-04-03 20:57:43 - All customers have been added to the queue
+2025-04-03 21:01:21 - Simulation speed set to: 2
+2025-04-03 21:01:22 - Stopping simulation...
+2025-04-03 21:01:22 - Customer queue thread finished
+2025-04-03 21:01:22 - TODAYS TOTAL ORDER SIZE : 0
+2025-04-03 21:01:22 - Generated report for 0 items

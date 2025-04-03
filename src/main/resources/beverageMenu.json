@@ -1,0 +1,244 @@
+{
+	"beverageItems":[
+						{
+							"itemId" : "B001",
+							"name" : "Americano",
+							"description" : "354ml, Espresso in water",
+							"cost" : "3.10",
+							"size" : "SHORT",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B002",
+							"name" : "Americano",
+							"description" : "473ml, Espresso in hot water",
+							"cost" : "3.60",
+							"size" : "TALL",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B003",
+							"name": "Americano",
+							"description" : "591ml, Espresso in hot water",
+							"cost" : "4.00",
+							"size" : "GRANDE",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B101",
+							"name": "Iced Americano",
+							"description" : "354ml, Espresso in water",
+							"cost" : "3.10",
+							"size" : "SHORT",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B102",
+							"name": "Iced Americano",
+							"description" : "473ml, Espresso in water",
+							"cost" : "3.60",
+							"size" : "TALL",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B103",
+							"name": "Iced Americano",
+							"description" : "591ml, Espresso in water",
+							"cost" : "4.0",
+							"size" : "GRANDE",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B201",
+							"name": "Cappuccino",
+							"description" : "354ml, Espresso in steamed milk with milk foam",
+							"cost" : "3.50",
+							"size" : "SHORT",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B202",
+							"name": "Cappuccino",
+							"description" : "473ml, Espresso in steamed milk with milk foam",
+							"cost" : "3.95",
+							"size" : "TALL",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B203",
+							"name": "Cappuccino",
+							"description" : "591ml, Espresso in steamed milk with milk foam",
+							"cost" : "4.30",
+							"size" : "GRANDE",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B301",
+							"name": "Hot Chocolate",
+							"description" : "354ml, Cocoa powder and sweetener in milk with marshmellows",
+							"cost" : "3.25",
+							"size" : "SHORT",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B302",
+							"name": "Hot Chocolate",
+							"description" : "473ml, Cocoa powder and sweetener in milk with marshmellows",
+							"cost" : "3.80",
+							"size" : "TALL",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B303",
+							"name": "Hot Chocolate",
+							"description" : "591ml, Cocoa powder and sweetener in milk with marshmellows",
+							"cost" : "4.20",
+							"size" : "GRANDE",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B401",
+							"name": "Iced Chocolate",
+							"description" : "354ml, Cocoa powder and sweetener in milk with whipped cream",
+							"cost" : "3.80",
+							"size" : "SHORT",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B402",
+							"name": "Iced Chocolate",
+							"description" : "473ml, Cocoa powder and sweetener in milk with whipped cream",
+							"cost" : "4.40",
+							"size" : "TALL",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B403",
+							"name": "Iced Chocolate",
+							"description" : "591ml, Cocoa powder and sweetener in milk with whipped cream",
+							"cost" : "4.20",
+							"size" : "GRANDE",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B501",
+							"name": "Latte",
+							"description" : "354ml, Espresso in steamed milk",
+							"cost" : "3.50",
+							"size" : "SHORT",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B502",
+							"name": "Latte",
+							"description" : "473ml, Espresso in steamed milk",
+							"cost" : "3.95",
+							"size" : "TALL",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B503",
+							"name": "Latte",
+							"description" : "591ml, Espresso in steamed milk",
+							"cost" : "4.30",
+							"size" : "GRANDE",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B601",
+							"name": "Iced Latte",
+							"description" : "354ml, Espresso in steamed milk",
+							"cost" : "3.60",
+							"size" : "SHORT",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B602",
+							"name" : "Iced Latte",
+							"description" : "473ml, Espresso in steamed milk",
+							"cost" : "4.10",
+							"size" : "TALL",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B603",
+							"name" : "Iced Latte",
+							"description" : "591ml, Espresso in steamed milk",
+							"cost" : "4.45",
+							"size" : "GRANDE",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B701",
+							"name" : "Mocha",
+							"description" : "354ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "4.80",
+							"size" : "SHORT",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B702",
+							"name" : "Mocha",
+							"description" : "473ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "5.40",
+							"size" : "TALL",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B703",
+							"name" : "Mocha",
+							"description" : "591ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "5.90",
+							"size" : "GRANDE",
+							"temp" : "HOT"
+						},
+						{
+							"itemId" : "B801",
+							"name" : "Mocha",
+							"description" : "354ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "4.15",
+							"size" : "SHORT",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B802",
+							"name" : "Mocha",
+							"description" : "473ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "4.50",
+							"size" : "TALL",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B803",
+							"name" : "Mocha",
+							"description" : "591ml, Coffee-flavoured espresso in steamed milk",
+							"cost" : "5.40",
+							"size" : "GRANDE",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B901",
+							"name" : "Peach Iced Tea",
+							"description" : "354ml, Peach-flavoured green tea",
+							"cost" : "4.25",
+							"size" : "SHORT",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B902",
+							"name" : "Peach Iced Tea",
+							"description" : "473ml, Peach-flavoured green tea",
+							"cost" : "4.70",
+							"size" : "TALL",
+							"temp" : "COLD"
+						},
+						{
+							"itemId" : "B903",
+							"name" : "Peach Iced Tea",
+							"description" : "591ml, Peach-flavoured green tea",
+							"cost" : "5.20",
+							"size" : "GRANDE",
+							"temp" : "COLD"
+						}
+					]
+}

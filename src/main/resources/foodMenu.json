@@ -1,0 +1,58 @@
+{
+	"foodItems":[
+					{
+						"itemId" : "F001",
+						"name" : "Caesar Salad",
+						"description" : "Lettuce, croutons, parmesan and eggs, dressed with olive oil, lemon juice and Worcestershire sauce",
+						"cost" : "3.00"
+					},
+					{
+						"itemId" : "F002",
+						"name" : "Cheese Bagel",
+						"description" : "Yeasted wheat dough with cheese filling",
+						"cost" : "4.20"
+					},
+					{
+						"itemId" : "F003",
+						"name" : "Chicken Caesar Salad",
+						"description" : "Grilled chicken, lettuce, croutons, parmesan and eggs, dressed with olive oil, lemon juice and Worcestershire sauce",
+						"cost" : "5.00"
+					},
+					{
+						"itemId" : "F004",
+						"name" : "Club Sandwich",
+						"description" : "White bread with chicken, lettuce, tomato and mayonnaise inside",
+						"cost" : "5.30"
+					},
+					{
+						"itemId" : "F005",
+						"name" : "Crisps",
+						"description" : "Proper Crisps",
+						"cost" : "1.50"
+					},
+					{
+						"itemId" : "F006",
+						"name" : "Egg Mayonnaise Sandwich",
+						"description" : "White bread with eggs and mayonnaise with seasonings inside",
+						"cost" : "5.00"
+					},
+					{
+						"itemId" : "F007",
+						"name" : "Plain Crossant",
+						"description" : "French layered pastry",
+						"cost" : "3.00"
+					},
+					{
+						"itemId" : "F008",
+						"name" : "Sausage Roll",
+						"description" : "Beef sausage wrapped in layered dough",
+						"cost" : "5.00"
+					},
+					{
+						"itemId" : "F009",
+						"name" : "Sweet Chilli Chicken Sandwich",
+						"description" : "White bread with sweet chilli chicken, lettuce, siracha sauce inside",
+						"cost" : "6.00"
+					}
+				]
+}

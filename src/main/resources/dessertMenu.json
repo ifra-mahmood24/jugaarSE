@@ -1,0 +1,53 @@
+{
+	"dessertItems":[
+					{
+						"itemId" : "D001",
+						"name" : "Brownie",
+						"description" : "Chocolate baked dessert bar",
+						"cost" : "3.15",
+                        "sugarFree" : false
+					},
+					{
+						"itemId" : "D002",
+						"name" : "Chocolate Chip Cookies",
+						"description" : "4 pieces of ultra soft and chewy chocolate chip cookies",
+						"cost" : "3.60",
+                        "sugarFree" : false
+					},
+					{
+						"itemId" : "D003",
+						"name" : "Chocolate Croissant",
+						"description" : "Chocolate filled French pastry",
+						"cost" : "3.60",
+                        "sugarFree" : true
+					},
+					{
+						"itemId" : "D004",
+						"name" : "Chocolate Chip Cookies",
+						"description" : "4 pieces of chocolate flavoured muffins",
+						"cost" : "3.50",
+                        "sugarFree" : false
+					},
+					{
+						"itemId" : "D005",
+						"name" : "Cinnamon Roll",
+						"description" : "Yeast dough rolled up with sweet cinnamon",
+						"cost" : "3.00",
+                        "sugarFree" : false
+					},
+					{
+						"itemId" : "D006",
+						"name" : "Doughnuts",
+						"description" : "4 pieces of varied flavoured doughnuts",
+						"cost" : "3.50",
+                        "sugarFree" : false
+					},
+                    {
+						"itemId" : "D007",
+						"name" : "Pain au Chocolat",
+						"description" : "Chocolate filled layered dough",
+						"cost" : "3.40",
+                        "sugarFree" : true
+					}
+				]
+}

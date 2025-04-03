@@ -1,0 +1,63 @@
+{
+  "customers" : [ {
+    "mailId" : "prasanthshanmugam1402@gmail.com",
+    "name" : "Prasanth",
+    "isVIP" : false
+  }, {
+    "mailId" : "asd@asd.com",
+    "name" : "asd",
+    "isVIP" : false
+  }, {
+    "mailId" : "aaa@aaa.com",
+    "name" : "aaa",
+    "isVIP" : false
+  }, {
+    "mailId" : "aaa@aaa.com",
+    "name" : "aaa",
+    "isVIP" : false
+  }, {
+    "mailId" : "aaa@aaa.com",
+    "name" : "aaa",
+    "isVIP" : false
+  }, {
+    "mailId" : "test@gmail.com",
+    "name" : "teat",
+    "isVIP" : false
+  }, {
+    "mailId" : "test@gmail.com",
+    "name" : "teat",
+    "isVIP" : false
+  }, {
+    "mailId" : "test@gmail.com",
+    "name" : "teat",
+    "isVIP" : false
+  }, {
+    "mailId" : "test@gmail.com",
+    "name" : "teat",
+    "isVIP" : false
+  }, {
+    "mailId" : "test@gmail.com",
+    "name" : "teat",
+    "isVIP" : false
+  }, {
+    "mailId" : "dsa@gmail.com",
+    "name" : "asd",
+    "isVIP" : false
+  }, {
+    "mailId" : "",
+    "name" : "",
+    "isVIP" : false
+  }, {
+    "mailId" : "prasanth@sa.com",
+    "name" : "prasanth",
+    "isVIP" : false
+  }, {
+    "mailId" : "prasanth@a.com",
+    "name" : "prasanth",
+    "isVIP" : false
+  }, {
+    "mailId" : "prasanth@as.com",
+    "name" : "prasanth",
+    "isVIP" : false
+  } ]
+}

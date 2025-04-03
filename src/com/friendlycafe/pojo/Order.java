@@ -123,6 +123,27 @@ public class Order {
 
 
 
+/**
+ * @param orderId
+ * @param customerId
+ * @param timeStamp
+ * @param orderedItems
+ * @param isDiscounted
+ * @param cost
+ */
+public Order(String orderId, String customerId, String timeStamp, HashMap<String, Integer> orderedItems,
+		boolean isDiscounted, double cost) {
+	super();
+	this.orderId = orderId;
+	this.customerId = customerId;
+	this.timeStamp = timeStamp;
+	this.orderedItems = orderedItems;
+	this.isDiscounted = isDiscounted;
+	this.cost = cost;
+}
+
+
+
 //	-------GETTERS AND SETTERS START---------
 /**
 	 * @return the orderId

@@ -1,103 +1,102 @@
+/**
+ * Author 			: prasanths 
+ * Last Modified By : prasanths
+ */
 package com.friendlycafe.controller;
 
-import com.friendlycafe.model.CafeModel;
-import com.friendlycafe.model.Staff;
-import com.friendlycafe.service.DataService;
-import com.friendlycafe.service.LogService;
-import com.friendlycafe.thread.CustomerQueueThread;
-import com.friendlycafe.thread.StaffThread;
-import com.friendlycafe.view.CafeView;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+
+import com.friendlycafe.dtoservice.CafeService;
+import com.friendlycafe.service.DataService;
+import com.friendlycafe.exception.CustomerFoundException;
+import com.friendlycafe.exception.InvalidMailFormatException;
+import com.friendlycafe.pojo.Item;
+import com.friendlycafe.pojo.Order;
 
 /**
- * Controller component of MVC pattern
- * Manages the cafe simulation
+ * 
  */
+
+//Whatever customer can see(if ordering) comes under this class  
 public class CafeController {
-    private CafeModel model;
-    private CafeView view;
-    private DataService dataService;
-    private CustomerQueueThread customerQueueThread;
-    private List<StaffThread> staffThreads = new ArrayList<>();
-    
-    public CafeController(CafeModel model, DataService dataService) {
-        this.model = model;
-        this.dataService = dataService;
-    }
-    
-    public void setView(CafeView view) {
-        this.view = view;
-    }
-    
-    public void startSimulation(int initialStaffCount) {
-        // Initialize staff
-        for (int i = 1; i <= initialStaffCount; i++) {
-            addStaffMember("Staff " + i);
-        }
-        
-        // Start adding customers
-        customerQueueThread = new CustomerQueueThread(model, dataService);
-        customerQueueThread.start();
-        
-        LogService.getInstance().log("Simulation started with " + initialStaffCount + " staff members");
-    }
-    
-    public void addStaffMember(String name) {
-        Staff staff = new Staff(name);
-        model.addStaff(staff);
-        
-        StaffThread staffThread = new StaffThread(staff, model);
-        staffThreads.add(staffThread);
-        staffThread.start();
-    }
-    
-    public void removeStaffMember() {
-        if (!staffThreads.isEmpty()) {
-            StaffThread staffThread = staffThreads.remove(staffThreads.size() - 1);
-            Staff staffToRemove = staffThread.getStaff();
-            
-            // Stop the thread gracefully
-            staffThread.stopWorking();
-            
-            // Remove from the model
-            model.removeStaff(staffToRemove);
-            
-            LogService.getInstance().log("Removed staff member: " + staffToRemove.getName());
-        }
-    }
-    
-    public void stopSimulation() {
-        LogService.getInstance().log("Stopping simulation...");
-        
-        if (customerQueueThread != null) {
-            customerQueueThread.stopRunning();
-        }
-        
-        for (StaffThread staffThread : staffThreads) {
-            staffThread.stopWorking();
-        }
-        
-        // Generate final report
-        dataService.generateReport();
-        
-        // Write log to file
-        LogService.getInstance().writeLogToFile("cafe_simulation_log.txt");
-        
-        LogService.getInstance().log("Simulation stopped");
-    }
-    
-    public void setSimulationSpeed(int speed) {
-        // Update speed for all threads
-        if (customerQueueThread != null) {
-            customerQueueThread.setSpeedFactor(speed);
-        }
-        
-        for (StaffThread staffThread : staffThreads) {
-            staffThread.setSpeedFactor(speed);
-        }
-        
-        LogService.getInstance().log("Simulation speed set to: " + speed);
-    }
+
+	private DataService dataService = new DataService();
+	private CafeService cafeService = new CafeService();
+	
+	
+	public ArrayList<Item> getMenu(){	
+		
+		return cafeService.getMenu();
+
+	}
+
+	public boolean checkCustomer(String customerId) {
+				
+		try {
+			return dataService.checkCustomer(customerId);
+		} catch (CustomerFoundException e) {
+			e.printStackTrace();
+		} catch (InvalidMailFormatException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public void saveCustomerDetails(String name, String mailId) {
+		dataService.saveCustomerDetails(name, mailId);
+	}
+	
+	
+	public double getTotalCost(HashMap<String, Integer> orderedItems) {	
+
+		return cafeService.calculateCost(orderedItems);		 
+	
+	}
+	
+	public double getDiscountedCost(double cost) {
+	
+		return cafeService.applyDiscount(cost);
+	
+	}	
+	
+	public Order saveAsActiveOrder(String customerMailId, HashMap<String, Integer> orderedItems, boolean isOffered, double cost) {
+	
+		Order order = constructOrder(customerMailId, orderedItems,isOffered, cost);		
+		
+		return dataService.saveOrder(order);
+		
+	}
+	
+	public void takeOrder(ArrayBlockingQueue<Order> orderQueue) {
+		
+		cafeService.takeOrder(orderQueue);
+		
+	}
+
+	
+	public Order saveOrder(String customerMailId,  HashMap<String, Integer> orderedItems, boolean isOffered, double cost) {
+						
+		Order order = constructOrder(customerMailId, orderedItems,isOffered, cost);		
+		
+		return dataService.saveOrder(order);
+	}
+
+
+	public void generateReport() {
+		dataService.generateReport();
+	}
+	
+//	-------------- PRIVATE HELPER METHODS -----------------	
+	private Order constructOrder(String customerMailId, HashMap<String, Integer> orderedItems, boolean isOffered, double cost) {
+
+		Random random = new Random();
+		Integer orderId = random.nextInt();
+		String timeStamp = LocalDateTime.now().toString();
+
+		return new Order("ORD"+ orderId.toString(),customerMailId, timeStamp, orderedItems, isOffered, cost);
+	}
 }

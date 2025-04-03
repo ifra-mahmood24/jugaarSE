@@ -1,4 +1,64 @@
 {
-  "data" : [ ],
-  "earningForTheDay" : 0.0
+  "data" : [ {
+    "itemId" : "F006",
+    "itemName" : "Egg Mayonnaise Sandwich",
+    "itemCost" : 5.0,
+    "count" : 2,
+    "totalCost" : 10.0
+  }, {
+    "itemId" : "F007",
+    "itemName" : "Plain Crossant",
+    "itemCost" : 3.0,
+    "count" : 4,
+    "totalCost" : 12.0
+  }, {
+    "itemId" : "B503",
+    "itemName" : "Latte",
+    "itemCost" : 4.3,
+    "count" : 2,
+    "totalCost" : 8.6
+  }, {
+    "itemId" : "B202",
+    "itemName" : "Cappuccino",
+    "itemCost" : 3.95,
+    "count" : 5,
+    "totalCost" : 19.75
+  }, {
+    "itemId" : "D007",
+    "itemName" : "Pain au Chocolat",
+    "itemCost" : 3.4,
+    "count" : 2,
+    "totalCost" : 6.8
+  }, {
+    "itemId" : "F002",
+    "itemName" : "Cheese Bagel",
+    "itemCost" : 4.2,
+    "count" : 6,
+    "totalCost" : 25.199999
+  }, {
+    "itemId" : "D006",
+    "itemName" : "Doughnuts",
+    "itemCost" : 3.5,
+    "count" : 3,
+    "totalCost" : 10.5
+  }, {
+    "itemId" : "F003",
+    "itemName" : "Chicken Caesar Salad",
+    "itemCost" : 5.0,
+    "count" : 3,
+    "totalCost" : 15.0
+  }, {
+    "itemId" : "D004",
+    "itemName" : "Chocolate Chip Cookies",
+    "itemCost" : 3.5,
+    "count" : 2,
+    "totalCost" : 7.0
+  }, {
+    "itemId" : "B201",
+    "itemName" : "Cappuccino",
+    "itemCost" : 3.5,
+    "count" : 3,
+    "totalCost" : 10.5
+  } ],
+  "earningForTheDay" : 125.34999942779541
 }

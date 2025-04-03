@@ -1,44 +1,24 @@
-2025-04-03 20:56:28 - Log service initialized
-2025-04-03 20:56:28 - Starting Cafe Simulation
-2025-04-03 20:56:29 - Menu loaded with 46 items
-2025-04-03 20:56:29 - Displaying application window
-2025-04-03 20:56:31 - Staff added: Staff 1
-2025-04-03 20:56:31 - Staff added: Staff 2
-2025-04-03 20:56:31 - Staff Staff 2 started working
-2025-04-03 20:56:31 - Staff Staff 1 started working
-2025-04-03 20:56:31 - Customer queue thread started
-2025-04-03 20:56:31 - Simulation started with 2 staff members
-2025-04-03 20:56:31 - Customer added to queue: prasanth
-2025-04-03 20:56:32 - Customer removed from queue: prasanth
-2025-04-03 20:56:32 - Staff Staff 1 is serving customer prasanth
-2025-04-03 20:56:32 - Customer added to queue: prasanth
-2025-04-03 20:56:33 - Customer removed from queue: prasanth
-2025-04-03 20:56:33 - Staff Staff 2 is serving customer prasanth
-2025-04-03 20:56:36 - Customer added to queue: prasanth
-2025-04-03 20:56:39 - Staff Staff 2 completed order for customer prasanth
-2025-04-03 20:56:39 - Customer removed from queue: prasanth
-2025-04-03 20:56:39 - Staff Staff 2 is serving customer prasanth
-2025-04-03 20:56:39 - All customers have been added to the queue
-2025-04-03 20:56:39 - Shop closed
-2025-04-03 20:56:39 - Customer queue thread finished
-2025-04-03 20:56:40 - Staff Staff 1 completed order for customer prasanth
-2025-04-03 20:56:40 - Staff Staff 1 finished working
-2025-04-03 20:56:46 - Staff Staff 2 completed order for customer prasanth
-2025-04-03 20:56:46 - Staff Staff 2 finished working
-2025-04-03 20:57:37 - Staff added: Staff 1
-2025-04-03 20:57:37 - Staff added: Staff 2
-2025-04-03 20:57:37 - Staff Staff 1 started working
-2025-04-03 20:57:37 - Staff Staff 1 finished working
-2025-04-03 20:57:37 - Staff Staff 2 started working
-2025-04-03 20:57:37 - Staff Staff 2 finished working
-2025-04-03 20:57:37 - Simulation started with 2 staff members
-2025-04-03 20:57:37 - Customer queue thread started
-2025-04-03 20:57:37 - Customer added to queue: prasanth
-2025-04-03 20:57:40 - Customer added to queue: prasanth
-2025-04-03 20:57:41 - Customer added to queue: prasanth
-2025-04-03 20:57:43 - All customers have been added to the queue
-2025-04-03 21:01:21 - Simulation speed set to: 2
-2025-04-03 21:01:22 - Stopping simulation...
-2025-04-03 21:01:22 - Customer queue thread finished
-2025-04-03 21:01:22 - TODAYS TOTAL ORDER SIZE : 0
-2025-04-03 21:01:22 - Generated report for 0 items
+2025-04-03 22:50:30 - Log service initialized
+2025-04-03 22:50:30 - Loaded {} existing orders11
+2025-04-03 22:50:36 - Simulation started with 2 staff members
+2025-04-03 22:50:38 - Customer prasanth@as.com added to queue with order ORD-1914399361
+2025-04-03 22:50:38 - Staff 2 is now processing order ORD-1914399361 for customer prasanth@as.com
+2025-04-03 22:50:40 - Customer prasanth@a.com added to queue with order ORD-87501208
+2025-04-03 22:50:40 - Staff 1 is now processing order ORD-87501208 for customer prasanth@a.com
+2025-04-03 22:50:41 - Customer prasanth@sa.com added to queue with order ORD-515495286
+2025-04-03 22:50:43 - Staff 2 has completed order ORD-1914399361 for customer prasanth@as.com
+2025-04-03 22:50:43 - Staff 2 is now processing order ORD-515495286 for customer prasanth@sa.com
+2025-04-03 22:50:44 - Customer  added to queue with order ORD793800074
+2025-04-03 22:50:45 - Staff 1 has completed order ORD-87501208 for customer prasanth@a.com
+2025-04-03 22:50:45 - Staff 1 is now processing order ORD793800074 for customer 
+2025-04-03 22:50:46 - Customer  added to queue with order ORD309263808
+2025-04-03 22:50:48 - Staff 2 has completed order ORD-515495286 for customer prasanth@sa.com
+2025-04-03 22:50:48 - Staff 2 is now processing order ORD309263808 for customer 
+2025-04-03 22:50:49 - Customer 2sdf.sdfsfd added to queue with order ORD-409052970
+2025-04-03 22:50:50 - Customer asfcwedcv added to queue with order ORD-355363887
+2025-04-03 22:50:50 - Staff 1 has completed order ORD793800074 for customer 
+2025-04-03 22:50:50 - Staff 1 is now processing order ORD-409052970 for customer 2sdf.sdfsfd
+2025-04-03 22:50:51 - Customer wewewe added to queue with order ORD92900573
+2025-04-03 22:50:53 - Customer wqedsf added to queue with order ORD160725508
+2025-04-03 22:50:53 - Staff 2 has completed order ORD309263808 for customer 
+2025-04-03 22:50:53 - Staff 2 is now processing order ORD-355363887 for customer asfcwedcv

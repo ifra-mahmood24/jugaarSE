@@ -40,17 +40,106 @@
     "orderId" : "ORD793800074",
     "customerId" : "",
     "timeStamp" : "2025-03-11T21:47:02.163641",
-    "orderedItems" : { },
-    "offeredItems" : { },
+    "orderedItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
+    "offeredItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
     "cost" : 1.11,
     "discounted" : false
   }, {
     "orderId" : "ORD309263808",
     "customerId" : "",
     "timeStamp" : "2025-03-11T21:46:15.721413",
-    "orderedItems" : { },
-    "offeredItems" : { },
+    "orderedItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
+    "offeredItems" : {
+      "F007" : 1,
+      "F008" : 1
+    },
     "cost" : 1.11,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-409052970",
+    "customerId" : "2sdf.sdfsfd",
+    "timeStamp" : "2025-04-03T22:18:21.061538",
+    "orderedItems" : {
+      "F007" : 2,
+      "B503" : 2,
+      "D004" : 2
+    },
+    "offeredItems" : null,
+    "cost" : 21.600000381469727,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-355363887",
+    "customerId" : "asfcwedcv",
+    "timeStamp" : "2025-04-03T22:23:41.860218",
+    "orderedItems" : {
+      "F006" : 2,
+      "B202" : 2,
+      "D007" : 2
+    },
+    "offeredItems" : null,
+    "cost" : 24.700000762939453,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD92900573",
+    "customerId" : "wewewe",
+    "timeStamp" : "2025-04-03T22:28:14.741383",
+    "orderedItems" : {
+      "F002" : 3,
+      "D006" : 3,
+      "B201" : 3
+    },
+    "offeredItems" : null,
+    "cost" : 33.599998474121094,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD160725508",
+    "customerId" : "wqedsf",
+    "timeStamp" : "2025-04-03T22:35:08.161849",
+    "orderedItems" : {
+      "F007" : 2
+    },
+    "offeredItems" : null,
+    "cost" : 6.0,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-1763359221",
+    "customerId" : "qwfsedgfrh",
+    "timeStamp" : "2025-04-03T22:36:38.079892",
+    "orderedItems" : {
+      "B202" : 3,
+      "F003" : 3
+    },
+    "offeredItems" : null,
+    "cost" : 26.850000381469727,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD2108271877",
+    "customerId" : "sdqdqdq@asd.com",
+    "timeStamp" : "2025-04-03T22:45:49.124574",
+    "orderedItems" : {
+      "F002" : 3
+    },
+    "offeredItems" : null,
+    "cost" : 12.59999942779541,
+    "discounted" : false
+  }, {
+    "orderId" : "ORD-1107102672",
+    "customerId" : "aaaaaaaa@AAAAAAa.com",
+    "timeStamp" : "2025-04-03T22:53:44.828661",
+    "orderedItems" : {
+      "F009" : 10
+    },
+    "offeredItems" : null,
+    "cost" : 60.0,
     "discounted" : false
   } ]
 }

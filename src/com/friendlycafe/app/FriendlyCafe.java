@@ -78,6 +78,7 @@ public class FriendlyCafe {
     private LogService logService;
     
     // UI Components
+    private JFrame parentFrame;
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel mainPanel;
@@ -100,11 +101,21 @@ public class FriendlyCafe {
      * Constructor for FriendlyCafe
      */
     public FriendlyCafe() {
+        this(null);
+    }
+
+    /**
+     * Constructor with parent frame
+     */
+    public FriendlyCafe(JFrame parentFrame) {
         // Initialize services
         dataService = new DataService();
         cafeService = new CafeService();
         cafeController = new CafeController();
         logService = LogService.getInstance();
+        
+        // Store parent frame
+        this.parentFrame = parentFrame;
         
         // Load menu
         loadMenu();
@@ -117,10 +128,34 @@ public class FriendlyCafe {
      * Load menu items from data service
      */
     private void loadMenu() {
-        menuItems = dataService.getMenu();
-        
-        for (Item item : menuItems) {
-            menuItemsMap.put(item.itemId, item);
+        try {
+            // Load menu items from DataService
+            menuItems = dataService.getMenu();
+            
+            if (menuItems == null || menuItems.isEmpty()) {
+                logService.log("WARNING: Menu items list is empty or null!");
+            } else {
+                logService.log("Successfully loaded " + menuItems.size() + " menu items");
+                
+                // Populate the map for quick lookups
+                for (Item item : menuItems) {
+                    menuItemsMap.put(item.itemId, item);
+                }
+            }
+            
+            // For debugging, print out some sample items
+            if (menuItems != null && !menuItems.isEmpty()) {
+                for (int i = 0; i < Math.min(3, menuItems.size()); i++) {
+                    Item item = menuItems.get(i);
+                    logService.log("Sample item " + i + ": " + item.itemId + " - " + item.name);
+                }
+            }
+        } catch (Exception e) {
+            logService.log("ERROR loading menu: " + e.getMessage());
+            e.printStackTrace();
+            
+            // Initialize with empty list to avoid null pointer exceptions
+            menuItems = new ArrayList<>();
         }
     }
     
@@ -130,7 +165,7 @@ public class FriendlyCafe {
     private void setupUI() {
         // Set up the main frame
         frame = new JFrame("Friendly Cafe");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(900, 700);
         frame.setLocationRelativeTo(null);
         
@@ -160,7 +195,12 @@ public class FriendlyCafe {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                logService.log("Application closed");
+                logService.log("FriendlyCafe GUI closed");
+                
+                // Show parent frame if it exists
+                if (parentFrame != null) {
+                    parentFrame.setVisible(true);
+                }
             }
         });
     }
@@ -680,16 +720,27 @@ public class FriendlyCafe {
     private void populateItemDisplay(List<Item> items) {
         itemDisplayPanel.removeAll();
         
-        JPanel gridPanel = new JPanel(new GridLayout(0, 1, 10, 10));
-        gridPanel.setBackground(VERY_LIGHT_RED);
-        gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // Log for debugging
+        logService.log("Displaying " + (items != null ? items.size() : 0) + " items");
         
-        for (Item item : items) {
-            JPanel itemPanel = createItemPanel(item);
-            gridPanel.add(itemPanel);
+        if (items == null || items.isEmpty()) {
+            JLabel emptyLabel = new JLabel("No items available in this category", SwingConstants.CENTER);
+            emptyLabel.setFont(new Font("Arial", Font.BOLD, 14));
+            emptyLabel.setForeground(DARK_RED);
+            itemDisplayPanel.add(emptyLabel, BorderLayout.CENTER);
+        } else {
+            JPanel gridPanel = new JPanel(new GridLayout(0, 1, 10, 10));
+            gridPanel.setBackground(VERY_LIGHT_RED);
+            gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            
+            for (Item item : items) {
+                JPanel itemPanel = createItemPanel(item);
+                gridPanel.add(itemPanel);
+            }
+            
+            itemDisplayPanel.add(gridPanel, BorderLayout.NORTH);
         }
         
-        itemDisplayPanel.add(gridPanel, BorderLayout.NORTH);
         itemDisplayPanel.revalidate();
         itemDisplayPanel.repaint();
     }

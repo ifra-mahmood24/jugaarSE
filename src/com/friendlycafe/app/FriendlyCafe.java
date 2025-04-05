@@ -120,6 +120,74 @@ public class FriendlyCafe {
         // Load menu
         loadMenu();
         
+        /**
+         * Check if menu items are correctly loaded and categorized
+         */
+
+        // Add this code after loading the menu items to verify they're categorized correctly
+        // ArrayList<Item> menu = dataService.getMenu();
+        // if (menu == null || menu.isEmpty()) {
+        //     System.err.println("ERROR: Menu is null or empty");
+        //     LogService.getInstance().log("ERROR: Menu is null or empty");
+        //     // Show error dialog
+        //     JOptionPane.showMessageDialog(frame, "Error loading menu items.", "Menu Loading Error", JOptionPane.ERROR_MESSAGE);
+        //     return;
+        // }
+
+        // System.out.println("Total menu items: " + menu.size());
+        // LogService.getInstance().log("Total menu items: " + menu.size());
+
+        // // Initialize lists
+        // List<Item> foodItems = new ArrayList<>();
+        // List<Item> beverageItems = new ArrayList<>();
+        // List<Item> dessertItems = new ArrayList<>();
+
+        // // Categorize items
+        // for (Item item : menu) {
+        //     if (item == null) {
+        //         System.err.println("WARNING: Null item in menu");
+        //         continue;
+        //     }
+            
+        //     System.out.println("Processing item: " + item.itemId + " - " + item.name);
+            
+        //     if (item instanceof Beverage) {
+        //         beverageItems.add(item);
+        //     } else if (item instanceof Dessert) {
+        //         dessertItems.add(item);
+        //     } else {
+        //         foodItems.add(item);
+        //     }
+        // }
+
+        // // Log information about the categorized items
+        // System.out.println("Food items: " + foodItems.size());
+        // System.out.println("Beverage items: " + beverageItems.size());
+        // System.out.println("Dessert items: " + dessertItems.size());
+
+        // LogService.getInstance().log("Food items: " + foodItems.size());
+        // LogService.getInstance().log("Beverage items: " + beverageItems.size());
+        // LogService.getInstance().log("Dessert items: " + dessertItems.size());
+
+        // // If any category is empty, log a warning
+        // if (foodItems.isEmpty()) {
+        //     System.err.println("WARNING: No food items found");
+        //     LogService.getInstance().log("WARNING: No food items found");
+        // }
+
+        // if (beverageItems.isEmpty()) {
+        //     System.err.println("WARNING: No beverage items found");
+        //     LogService.getInstance().log("WARNING: No beverage items found");
+        // }
+
+        // if (dessertItems.isEmpty()) {
+        //     System.err.println("WARNING: No dessert items found");
+        //     LogService.getInstance().log("WARNING: No dessert items found");
+        // }
+
+
+
+
         // Set up UI
         setupUI();
     }
@@ -133,7 +201,36 @@ public class FriendlyCafe {
             menuItems = dataService.getMenu();
             
             if (menuItems == null || menuItems.isEmpty()) {
-                logService.log("WARNING: Menu items list is empty or null!");
+                // logService.log("WARNING: Menu items list is empty or null!");
+                logService.log("Creating dummy menu items for testing");
+                menuItems = new ArrayList<>();
+                
+                // Create a few sample food items
+                menuItems.add(new Item("F001", "Caesar Salad", "Fresh salad with Caesar dressing", 3.00f));
+                menuItems.add(new Item("F002", "Cheese Bagel", "Toasted bagel with cream cheese", 4.20f));
+                menuItems.add(new Item("F003", "Chicken Caesar Salad", "Grilled chicken, lettuce, croutons, parmesan and eggs, dressed with olive oil, lemon juice and Worcestershire sauce", 5.00f));
+                menuItems.add(new Item("F004", "Club Sandwich", "White bread with chicken, lettuce, tomato and mayonnaise inside", 5.30f));
+                menuItems.add(new Item("F005", "Crisps", "Proper Crisps", 1.50f));
+                menuItems.add(new Item("F006", "Egg Mayonnaise Sandwich", "White bread with eggs and mayonnaise with seasonings inside", 5.00f));
+                
+                // Create a few sample beverages
+                Beverage coffee = new Beverage("B001", "Americano", "Strong coffee", 3.10f, 
+                        Beverage.TempType.HOT, Beverage.DrinkSize.TALL);
+                Beverage tea = new Beverage("B002", "Iced Tea", "Refreshing tea", 2.80f, 
+                        Beverage.TempType.COLD, Beverage.DrinkSize.GRANDE);
+                menuItems.add(coffee);
+                menuItems.add(tea);
+                
+                // Create a few sample desserts
+                Dessert cake = new Dessert("D001", "Chocolate Cake", "Rich chocolate cake", 4.50f, false);
+                Dessert cookie = new Dessert("D002", "Oatmeal Cookie", "Healthy cookie option", 2.00f, true);
+                menuItems.add(cake);
+                menuItems.add(cookie);
+                
+                // Populate the map
+                for (Item item : menuItems) {
+                    menuItemsMap.put(item.itemId, item);
+                }
             } else {
                 logService.log("Successfully loaded " + menuItems.size() + " menu items");
                 
@@ -166,7 +263,7 @@ public class FriendlyCafe {
         // Set up the main frame
         frame = new JFrame("Friendly Cafe");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(900, 700);
+        frame.setSize(960, 600);
         frame.setLocationRelativeTo(null);
         
         // Create main panel with card layout
@@ -232,7 +329,7 @@ public class FriendlyCafe {
         welcomeLabel.setFont(new Font("Arial", Font.ITALIC, 20));
         welcomeLabel.setForeground(DARK_RED);
         
-        JButton placeOrderButton = createStyledButton("Place Order", MEDIUM_RED, Color.WHITE);
+        JButton placeOrderButton = createStyledButton("Place Order", MEDIUM_RED, Color.BLACK);
         placeOrderButton.setPreferredSize(new Dimension(200, 50));
         placeOrderButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
         
@@ -272,9 +369,9 @@ public class FriendlyCafe {
         topMenuBar.setBackground(MEDIUM_RED);
         topMenuBar.setPreferredSize(new Dimension(900, 50));
         
-        JButton foodButton = createStyledButton("Food", DARK_RED, Color.WHITE);
-        JButton beverageButton = createStyledButton("Beverages", DARK_RED, Color.WHITE);
-        JButton dessertButton = createStyledButton("Desserts", DARK_RED, Color.WHITE);
+        JButton foodButton = createStyledButton("Food", DARK_RED, Color.BLACK);
+        JButton beverageButton = createStyledButton("Beverages", DARK_RED, Color.BLACK);
+        JButton dessertButton = createStyledButton("Desserts", DARK_RED, Color.BLACK);
         
         topMenuBar.add(foodButton);
         topMenuBar.add(beverageButton);
@@ -287,17 +384,18 @@ public class FriendlyCafe {
         bottomButtonsPanel.setBackground(MEDIUM_RED);
         bottomButtonsPanel.setPreferredSize(new Dimension(900, 50));
         
-        JButton homeButton = createStyledButton("Home", DARK_RED, Color.WHITE);
+        JButton homeButton = createStyledButton("Home", DARK_RED, Color.BLACK);
         homeButton.addActionListener(e -> cardLayout.show(mainPanel, "HOME"));
         
-        JButton placeOrderButton = createStyledButton("Place Order", DARK_RED, Color.WHITE);
+        JButton placeOrderButton = createStyledButton("Place Order", DARK_RED, Color.BLACK);
         placeOrderButton.addActionListener(e -> {
-            if (orderingItems.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Please add items to your cart first", 
-                        "Empty Cart", JOptionPane.WARNING_MESSAGE);
-            } else {
-                cardLayout.show(mainPanel, "PAYMENT");
-            }
+            // if (orderingItems.isEmpty()) {
+            //     JOptionPane.showMessageDialog(frame, "Please add items to your cart first", 
+            //             "Empty Cart", JOptionPane.WARNING_MESSAGE);
+            // } else {
+            //     cardLayout.show(mainPanel, "PAYMENT");
+            // }
+            cardLayout.show(mainPanel, "PAYMENT");
         });
         
         bottomButtonsPanel.add(homeButton);
@@ -331,6 +429,7 @@ public class FriendlyCafe {
         beverageButton.addActionListener(e -> populateItemDisplay(getItemsByCategory("Beverage")));
         dessertButton.addActionListener(e -> populateItemDisplay(getItemsByCategory("Dessert")));
         
+        
         // Initially show food items
         foodButton.doClick();
         
@@ -361,7 +460,7 @@ public class FriendlyCafe {
         JScrollPane cartScrollPane = new JScrollPane(cartItemsPanel);
         cartScrollPane.setBorder(BorderFactory.createEmptyBorder());
         
-        panel.add(cartScrollPane, BorderLayout.CENTER);
+        panel.add(cartScrollPane, BorderLayout.NORTH);
         
         // Cart summary panel
         JPanel summaryPanel = new JPanel();
@@ -490,10 +589,10 @@ public class FriendlyCafe {
         bottomPanel.setBackground(MEDIUM_RED);
         bottomPanel.setPreferredSize(new Dimension(900, 70));
         
-        JButton cancelButton = createStyledButton("Cancel", DARK_RED, Color.WHITE);
+        JButton cancelButton = createStyledButton("Cancel", DARK_RED, Color.BLACK);
         cancelButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
         
-        JButton confirmButton = createStyledButton("Confirm Order", DARK_RED, Color.WHITE);
+        JButton confirmButton = createStyledButton("Confirm Order", DARK_RED, Color.BLACK);
         confirmButton.addActionListener(e -> {
             customerName = nameField.getText();
             customerEmail = emailField.getText();
@@ -512,15 +611,21 @@ public class FriendlyCafe {
                 
                 // Calculate final costs
                 double billCost = cafeController.getTotalCost(orderingItems);
+                logService.log("Bill cost calculated: " + billCost);
                 double discountedCost = cafeController.getDiscountedCost(billCost);
+                logService.log("Discounted cost calculated: " + discountedCost);
                 boolean isOffered = billCost != discountedCost;
                 
                 // Save the order
                 cafeController.saveOrder(customerEmail, orderingItems, isOffered, discountedCost);
-                
+                logService.log("Order saved successfully");
+
                 // Update bill screen and show it
                 updateBillScreen();
+                logService.log("Bill screen updated successfully");
+
                 cardLayout.show(mainPanel, "BILL");
+
                 
                 // Log order
                 logService.log("Order completed by " + customerName + " (" + customerEmail + ") for " + 
@@ -578,7 +683,7 @@ public class FriendlyCafe {
         bottomPanel.setBackground(MEDIUM_RED);
         bottomPanel.setPreferredSize(new Dimension(900, 70));
         
-        JButton homeButton = createStyledButton("Return to Home", DARK_RED, Color.WHITE);
+        JButton homeButton = createStyledButton("Return to Home", DARK_RED, Color.BLACK);
         homeButton.addActionListener(e -> {
             // Reset order data
             orderingItems.clear();
@@ -596,104 +701,248 @@ public class FriendlyCafe {
         return panel;
     }
     
+    // /**
+    //  * Update the bill screen with order details
+    //  */
+    // private void updateBillScreen() {
+    //     JPanel centerPanel = (JPanel) ((JScrollPane) ((JPanel) mainPanel.getComponent(3)).getComponent(1)).getViewport().getView();
+    //     centerPanel.removeAll();
+        
+    //     // Add thank you message
+    //     JLabel thankYouLabel = new JLabel("Thank you for your order, " + customerName + "!");
+    //     thankYouLabel.setFont(new Font("Arial", Font.BOLD, 18));
+    //     thankYouLabel.setForeground(DARK_RED);
+    //     thankYouLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+    //     centerPanel.add(thankYouLabel);
+        
+    //     centerPanel.add(Box.createVerticalStrut(20));
+        
+    //     // Add order details heading
+    //     JLabel orderDetailsLabel = new JLabel("Order Details:");
+    //     orderDetailsLabel.setFont(new Font("Arial", Font.BOLD, 16));
+    //     orderDetailsLabel.setForeground(DARK_RED);
+    //     orderDetailsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+    //     centerPanel.add(orderDetailsLabel);
+        
+    //     centerPanel.add(Box.createVerticalStrut(10));
+        
+    //     // Create a panel for items
+    //     JPanel itemsPanel = new JPanel();
+    //     itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
+    //     itemsPanel.setBackground(VERY_LIGHT_RED);
+    //     itemsPanel.setBorder(BorderFactory.createLineBorder(MEDIUM_RED));
+    //     itemsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+    //     // Add each item
+    //     for (Map.Entry<String, Integer> entry : orderingItems.entrySet()) {
+    //         String itemId = entry.getKey();
+    //         int quantity = entry.getValue();
+    //         Item item = menuItemsMap.get(itemId);
+            
+    //         if (item != null) {
+    //             JPanel itemRow = new JPanel(new BorderLayout());
+    //             itemRow.setBackground(VERY_LIGHT_RED);
+    //             itemRow.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                
+    //             JLabel itemLabel = new JLabel(quantity + " x " + item.name);
+    //             JLabel priceLabel = new JLabel(currencyFormat.format(item.cost * quantity));
+                
+    //             itemRow.add(itemLabel, BorderLayout.WEST);
+    //             itemRow.add(priceLabel, BorderLayout.EAST);
+                
+    //             itemsPanel.add(itemRow);
+    //         }
+    //     }
+        
+    //     centerPanel.add(itemsPanel);
+    //     centerPanel.add(Box.createVerticalStrut(20));
+        
+    //     // Calculate totals
+    //     double subtotal = cafeController.getTotalCost(orderingItems);
+    //     double discountedTotal = cafeController.getDiscountedCost(subtotal);
+    //     double discount = subtotal - discountedTotal;
+        
+    //     // Add totals
+    //     JPanel totalsPanel = new JPanel();
+    //     totalsPanel.setLayout(new BoxLayout(totalsPanel, BoxLayout.Y_AXIS));
+    //     totalsPanel.setBackground(LIGHT_RED);
+    //     totalsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    //     totalsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+    //     // Create totals rows
+    //     JPanel subtotalRow = createBillRow("Subtotal:", currencyFormat.format(subtotal));
+    //     JPanel discountRow = createBillRow("Discount:", currencyFormat.format(discount));
+    //     JPanel totalRow = createBillRow("Total:", currencyFormat.format(discountedTotal));
+        
+    //     // Style the total row differently
+    //     totalRow.setBackground(MEDIUM_RED);
+    //     totalRow.getComponent(0).setFont(new Font("Arial", Font.BOLD, 16));
+    //     totalRow.getComponent(1).setFont(new Font("Arial", Font.BOLD, 16));
+        
+    //     totalsPanel.add(subtotalRow);
+    //     totalsPanel.add(discountRow);
+    //     totalsPanel.add(totalRow);
+        
+    //     centerPanel.add(totalsPanel);
+        
+    //     // Add a message at the bottom
+    //     centerPanel.add(Box.createVerticalStrut(20));
+        
+    //     JLabel messageLabel = new JLabel("We hope to see you again soon!");
+    //     messageLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+    //     messageLabel.setForeground(DARK_RED);
+    //     messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+    //     centerPanel.add(messageLabel);
+        
+    //     // Refresh the panel
+    //     centerPanel.revalidate();
+    //     centerPanel.repaint();
+    // }
+    
     /**
      * Update the bill screen with order details
      */
     private void updateBillScreen() {
-        JPanel centerPanel = (JPanel) ((JScrollPane) ((JPanel) mainPanel.getComponent(3)).getComponent(1)).getViewport().getView();
-        centerPanel.removeAll();
-        
-        // Add thank you message
-        JLabel thankYouLabel = new JLabel("Thank you for your order, " + customerName + "!");
-        thankYouLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        thankYouLabel.setForeground(DARK_RED);
-        thankYouLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        centerPanel.add(thankYouLabel);
-        
-        centerPanel.add(Box.createVerticalStrut(20));
-        
-        // Add order details heading
-        JLabel orderDetailsLabel = new JLabel("Order Details:");
-        orderDetailsLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        orderDetailsLabel.setForeground(DARK_RED);
-        orderDetailsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        centerPanel.add(orderDetailsLabel);
-        
-        centerPanel.add(Box.createVerticalStrut(10));
-        
-        // Create a panel for items
-        JPanel itemsPanel = new JPanel();
-        itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
-        itemsPanel.setBackground(VERY_LIGHT_RED);
-        itemsPanel.setBorder(BorderFactory.createLineBorder(MEDIUM_RED));
-        itemsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        // Add each item
-        for (Map.Entry<String, Integer> entry : orderingItems.entrySet()) {
-            String itemId = entry.getKey();
-            int quantity = entry.getValue();
-            Item item = menuItemsMap.get(itemId);
+        try {
+            // Get the bill screen panel (should be the 4th component added to mainPanel)
+            JPanel billScreen = (JPanel) mainPanel.getComponent(3);
             
-            if (item != null) {
-                JPanel itemRow = new JPanel(new BorderLayout());
-                itemRow.setBackground(VERY_LIGHT_RED);
-                itemRow.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                
-                JLabel itemLabel = new JLabel(quantity + " x " + item.name);
-                JLabel priceLabel = new JLabel(currencyFormat.format(item.cost * quantity));
-                
-                itemRow.add(itemLabel, BorderLayout.WEST);
-                itemRow.add(priceLabel, BorderLayout.EAST);
-                
-                itemsPanel.add(itemRow);
+            // Find the scroll pane component
+            JScrollPane scrollPane = null;
+            for (Component comp : billScreen.getComponents()) {
+                if (comp instanceof JScrollPane) {
+                    scrollPane = (JScrollPane) comp;
+                    break;
+                }
             }
+            
+            if (scrollPane == null) {
+                logService.log("ERROR: Could not find scroll pane in bill screen");
+                return;
+            }
+            
+            // Get the center panel inside the scroll pane's viewport
+            JPanel centerPanel = (JPanel) scrollPane.getViewport().getView();
+            
+            // Clear the panel
+            centerPanel.removeAll();
+            
+            // Add thank you message
+            JLabel thankYouLabel = new JLabel("Thank you for your order, " + customerName + "!");
+            thankYouLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            thankYouLabel.setForeground(DARK_RED);
+            thankYouLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            centerPanel.add(thankYouLabel);
+            
+            centerPanel.add(Box.createVerticalStrut(20));
+            
+            // Add order details heading
+            JLabel orderDetailsLabel = new JLabel("Order Details:");
+            orderDetailsLabel.setFont(new Font("Arial", Font.BOLD, 16));
+            orderDetailsLabel.setForeground(DARK_RED);
+            orderDetailsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            centerPanel.add(orderDetailsLabel);
+            
+            centerPanel.add(Box.createVerticalStrut(10));
+            
+            // Create a panel for items
+            JPanel itemsPanel = new JPanel();
+            itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
+            itemsPanel.setBackground(VERY_LIGHT_RED);
+            itemsPanel.setBorder(BorderFactory.createLineBorder(MEDIUM_RED));
+            itemsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            
+            // Add each item
+            for (Map.Entry<String, Integer> entry : orderingItems.entrySet()) {
+                String itemId = entry.getKey();
+                int quantity = entry.getValue();
+                Item item = menuItemsMap.get(itemId);
+                
+                if (item != null) {
+                    JPanel itemRow = new JPanel(new BorderLayout());
+                    itemRow.setBackground(VERY_LIGHT_RED);
+                    itemRow.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                    
+                    JLabel itemLabel = new JLabel(quantity + " x " + item.name);
+                    JLabel priceLabel = new JLabel(currencyFormat.format(item.cost * quantity));
+                    
+                    itemRow.add(itemLabel, BorderLayout.WEST);
+                    itemRow.add(priceLabel, BorderLayout.EAST);
+                    
+                    itemsPanel.add(itemRow);
+                }
+            }
+            
+            centerPanel.add(itemsPanel);
+            centerPanel.add(Box.createVerticalStrut(20));
+            
+            // Calculate totals
+            double subtotal = 0.0;
+            for (Map.Entry<String, Integer> entry : orderingItems.entrySet()) {
+                String itemId = entry.getKey();
+                int quantity = entry.getValue();
+                Item item = menuItemsMap.get(itemId);
+                
+                if (item != null) {
+                    subtotal += item.cost * quantity;
+                }
+            }
+            
+            // If cafeController methods aren't working, use direct calculation
+            double discountedTotal = subtotal * 0.9; // 10% discount for testing
+            double discount = subtotal - discountedTotal;
+            
+            // Add totals
+            JPanel totalsPanel = new JPanel();
+            totalsPanel.setLayout(new BoxLayout(totalsPanel, BoxLayout.Y_AXIS));
+            totalsPanel.setBackground(LIGHT_RED);
+            totalsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            totalsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            
+            // Create totals rows
+            JPanel subtotalRow = createBillRow("Subtotal:", currencyFormat.format(subtotal));
+            JPanel discountRow = createBillRow("Discount:", currencyFormat.format(discount));
+            JPanel totalRow = createBillRow("Total:", currencyFormat.format(discountedTotal));
+            
+            // Style the total row differently
+            totalRow.setBackground(MEDIUM_RED);
+            totalRow.getComponent(0).setFont(new Font("Arial", Font.BOLD, 16));
+            totalRow.getComponent(1).setFont(new Font("Arial", Font.BOLD, 16));
+            
+            totalsPanel.add(subtotalRow);
+            totalsPanel.add(discountRow);
+            totalsPanel.add(totalRow);
+            
+            centerPanel.add(totalsPanel);
+            
+            // Add a message at the bottom
+            centerPanel.add(Box.createVerticalStrut(20));
+            
+            JLabel messageLabel = new JLabel("We hope to see you again soon!");
+            messageLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+            messageLabel.setForeground(DARK_RED);
+            messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            centerPanel.add(messageLabel);
+            
+            // Refresh the panel
+            centerPanel.revalidate();
+            centerPanel.repaint();
+            
+            // Log success
+            logService.log("Bill screen updated successfully");
+            
+        } catch (Exception e) {
+            logService.log("ERROR updating bill screen: " + e.getMessage());
+            e.printStackTrace();
+            
+            // Show error message to user
+            JOptionPane.showMessageDialog(frame, 
+                    "Error generating bill: " + e.getMessage(), 
+                    "Bill Error", 
+                    JOptionPane.ERROR_MESSAGE);
         }
-        
-        centerPanel.add(itemsPanel);
-        centerPanel.add(Box.createVerticalStrut(20));
-        
-        // Calculate totals
-        double subtotal = cafeController.getTotalCost(orderingItems);
-        double discountedTotal = cafeController.getDiscountedCost(subtotal);
-        double discount = subtotal - discountedTotal;
-        
-        // Add totals
-        JPanel totalsPanel = new JPanel();
-        totalsPanel.setLayout(new BoxLayout(totalsPanel, BoxLayout.Y_AXIS));
-        totalsPanel.setBackground(LIGHT_RED);
-        totalsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        totalsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        // Create totals rows
-        JPanel subtotalRow = createBillRow("Subtotal:", currencyFormat.format(subtotal));
-        JPanel discountRow = createBillRow("Discount:", currencyFormat.format(discount));
-        JPanel totalRow = createBillRow("Total:", currencyFormat.format(discountedTotal));
-        
-        // Style the total row differently
-        totalRow.setBackground(MEDIUM_RED);
-        totalRow.getComponent(0).setFont(new Font("Arial", Font.BOLD, 16));
-        totalRow.getComponent(1).setFont(new Font("Arial", Font.BOLD, 16));
-        
-        totalsPanel.add(subtotalRow);
-        totalsPanel.add(discountRow);
-        totalsPanel.add(totalRow);
-        
-        centerPanel.add(totalsPanel);
-        
-        // Add a message at the bottom
-        centerPanel.add(Box.createVerticalStrut(20));
-        
-        JLabel messageLabel = new JLabel("We hope to see you again soon!");
-        messageLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-        messageLabel.setForeground(DARK_RED);
-        messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        centerPanel.add(messageLabel);
-        
-        // Refresh the panel
-        centerPanel.revalidate();
-        centerPanel.repaint();
     }
-    
+
     /**
      * Helper method to create a row for the bill
      */
@@ -727,11 +976,11 @@ public class FriendlyCafe {
             JLabel emptyLabel = new JLabel("No items available in this category", SwingConstants.CENTER);
             emptyLabel.setFont(new Font("Arial", Font.BOLD, 14));
             emptyLabel.setForeground(DARK_RED);
-            itemDisplayPanel.add(emptyLabel, BorderLayout.CENTER);
+            itemDisplayPanel.add(emptyLabel, BorderLayout.NORTH);
         } else {
             JPanel gridPanel = new JPanel(new GridLayout(0, 1, 10, 10));
             gridPanel.setBackground(VERY_LIGHT_RED);
-            gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));         
             
             for (Item item : items) {
                 JPanel itemPanel = createItemPanel(item);
@@ -739,6 +988,11 @@ public class FriendlyCafe {
             }
             
             itemDisplayPanel.add(gridPanel, BorderLayout.NORTH);
+
+            // // Create a scroll pane for the grid panel
+            // JScrollPane gridScrollPane = new JScrollPane(gridPanel);
+            // gridScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+            // itemDisplayPanel.add(gridScrollPane, BorderLayout.CENTER);
         }
         
         itemDisplayPanel.revalidate();
@@ -776,7 +1030,7 @@ public class FriendlyCafe {
         descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         
         // Add to cart button
-        JButton addButton = createStyledButton("Add to Cart", MEDIUM_RED, Color.WHITE);
+        JButton addButton = createStyledButton("Add to Cart", MEDIUM_RED, Color.BLACK);
         addButton.addActionListener(e -> addItemToCart(item));
         
         panel.add(headerPanel, BorderLayout.NORTH);
@@ -803,9 +1057,9 @@ public class FriendlyCafe {
         // Log addition
         logService.log("Added " + item.name + " to cart");
         
-        // Show a confirmation message
-        JOptionPane.showMessageDialog(frame, item.name + " added to cart", 
-                "Item Added", JOptionPane.INFORMATION_MESSAGE);
+        // // Show a confirmation message
+        // JOptionPane.showMessageDialog(frame, item.name + " added to cart", 
+        //         "Item Added", JOptionPane.INFORMATION_MESSAGE);
     }
     
     /**

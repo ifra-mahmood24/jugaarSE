@@ -9,9 +9,6 @@ import java.util.logging.*;
 import com.friendlycafe.service.DataService;
 
 
-/**
- * This class extends item class exclusively for beverages
- */
 public class Beverage extends Item {
 
 	private static final Logger beverageLogger = Logger.getLogger(DataService.class.getName());

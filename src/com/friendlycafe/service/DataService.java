@@ -43,22 +43,13 @@ public class DataService {
 
     public static final ArrayList<Item> menuList = new ArrayList<>();
     private final DataAccessService daoService = new DataAccessService();
-    
-    /**
-     * Get all menu items
-     */
+
     public ArrayList<Item> getMenu() {
         try {
 
-            String foodPath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
-            String beveragePath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
-            String dessertPath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
-            JSONArray foodItemListAsObject = daoService.readJSONFile(foodPath, "foodItems");
-            JSONArray beverageItemListAsObject = daoService.readJSONFile(beveragePath, "beverageItems");
-            JSONArray dessertItemListAsObject = daoService.readJSONFile(dessertPath,  "dessertItems");
-            // JSONArray foodItemListAsObject = daoService.readJSONFile("/src/main/resources/foodMenu.json", "foodItems");
-            // JSONArray beverageItemListAsObject = daoService.readJSONFile("/src/main/resources/beverageMenu.json", "beverageItems");
-            // JSONArray dessertItemListAsObject = daoService.readJSONFile("/src/main/resources/dessertMenu.json", "dessertItems");
+             JSONArray foodItemListAsObject = daoService.readJSONFile("src/main/resources/foodMenu.json", "foodItems");
+             JSONArray beverageItemListAsObject = daoService.readJSONFile("src/main/resources/beverageMenu.json", "beverageItems");
+             JSONArray dessertItemListAsObject = daoService.readJSONFile("src/main/resources/dessertMenu.json", "dessertItems");
 
             ArrayList<Item> foodItemList = new ArrayList<>();
             ArrayList<Item> beverageItemList = new ArrayList<>();
@@ -137,6 +128,21 @@ public class DataService {
         
         // Add log entry
         LogService.getInstance().log("Saved order " + order.getOrderId() + " to database");
+
+        return order;
+    }
+    
+    public Order saveAsActiveOrder(Order order) {
+        float orderCost = calculateCost(order);
+        order.setCost(orderCost);
+        
+        ArrayList<Order> allOldOrders = getAllActiveOrders();
+        allOldOrders.add(order);
+        
+        daoService.writeJSONFileForOrders("src/main/resources/activeOrders.json", allOldOrders);
+        
+        // Add log entry
+        LogService.getInstance().log("Saved as active order " + order.getOrderId() + " to database");
 
         return order;
     }
@@ -291,32 +297,14 @@ public class DataService {
         
         for(Item item : menu) 
             menuRate.put(item.itemId, item.cost);
-        
+        System.out.println("MENU RATE :"+ menuRate.size() +"  "+menu.size());
         for(Entry<String, Integer> orderedItem : orderedItems.entrySet()) 
             orderCost += menuRate.get(orderedItem.getKey()) * orderedItem.getValue();
                 
         return orderCost;
     }
     
-    private ArrayList<Order> getAllOldOrders(){
-        ArrayList<Order> allOrders = new ArrayList<>();
-        JSONArray allOrdersAsJSON = daoService.readJSONFile("src/main/resources/orders.json", "orders");
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        for(Object oldOrder : allOrdersAsJSON) {
-            try {
-                Order thisOrder = objectMapper.readValue(oldOrder.toString(), Order.class);
-                allOrders.add(thisOrder);
-            } catch (JsonMappingException e) {
-                e.printStackTrace();
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return allOrders;
-    }
-    
+ 
     /**
      * Get all orders from the database
      * Added for Stage 2
@@ -324,7 +312,7 @@ public class DataService {
     public List<Order> getAllOrders() {
         ArrayList<Order> allOrders = new ArrayList<>();
         try {
-            JSONArray allOrdersAsJSON = daoService.readJSONFile("src/main/resources/orders.json", "orders");
+            JSONArray allOrdersAsJSON = daoService.readJSONFile("src/main/resources/activeOrders.json", "orders");
             ObjectMapper objectMapper = new ObjectMapper();
 
             for(Object oldOrder : allOrdersAsJSON) {
@@ -342,4 +330,59 @@ public class DataService {
         }
         return allOrders;
     }
+    
+    
+    //    -----PRIVATE HELPERS------
+    public ArrayList<Order> getAllOldOrders(){
+
+        return getOrders("src/main/resources/Orders.json");
+    }
+    
+    public ArrayList<Order> getAllActiveOrders(){
+
+        return getOrders("src/main/resources/activeOrders.json");
+    }
+    
+    private ArrayList<Order> getOrders(String path){
+    	
+        ArrayList<Order> allOrders = new ArrayList<>();
+        JSONArray allOrdersAsJSON = daoService.readJSONFile(path, "orders");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        for(Object oldOrder : allOrdersAsJSON) {
+            try {
+                Order thisOrder = objectMapper.readValue(oldOrder.toString(), Order.class);
+                allOrders.add(thisOrder);
+            } catch (JsonMappingException e) {
+                e.printStackTrace();
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return allOrders;
+
+    }
+
+	public void removeFromActiveOrder(Order orderToRemove) {
+		System.out.println("Try to remove .. "+orderToRemove.getOrderId());
+
+		ArrayList<Order> allOrdersFromActiveOrders = getAllActiveOrders();
+		ArrayList<Order> updatedActiveOrders = new ArrayList<>();
+		System.out.println("old Active orders size :"+ allOrdersFromActiveOrders.size());
+		for(Order order: allOrdersFromActiveOrders ) {
+			System.out.println("COMPARING...  "+orderToRemove.getOrderId()+"  &&  "+order.getOrderId());
+			if(!order.getOrderId().toString().equals(orderToRemove.getOrderId().toString())) {
+				System.out.println("Adding... "+ order.getOrderId());
+				updatedActiveOrders.add(order);
+			}
+		}
+		allOrdersFromActiveOrders.remove(orderToRemove);
+		System.out.println("NEW UPDATED Active orders size :"+ updatedActiveOrders.size());
+		for(Order order: updatedActiveOrders ) {
+			System.out.println("ID : "+order.getOrderId());
+		}
+		daoService.writeJSONFileForOrders("src/main/resources/activeOrders.json", updatedActiveOrders);
+		System.out.println("New Active orders size :"+ getAllActiveOrders().size());
+	}
 }

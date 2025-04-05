@@ -5,16 +5,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Singleton class for logging simulation events
- */
 public class LogService {
     private static LogService instance;
     private StringBuilder log = new StringBuilder();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     
     private LogService() {
-        // Private constructor for singleton pattern
         log("Log service initialized");
     }
     

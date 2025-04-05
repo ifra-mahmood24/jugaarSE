@@ -1,0 +1,22 @@
+{
+  "data" : [ {
+    "itemId" : "F002",
+    "itemName" : "Cheese Bagel",
+    "itemCost" : 4.2,
+    "count" : 1,
+    "totalCost" : 4.2
+  }, {
+    "itemId" : "F003",
+    "itemName" : "Chicken Caesar Salad",
+    "itemCost" : 5.0,
+    "count" : 1,
+    "totalCost" : 5.0
+  }, {
+    "itemId" : "F004",
+    "itemName" : "Club Sandwich",
+    "itemCost" : 5.3,
+    "count" : 1,
+    "totalCost" : 5.3
+  } ],
+  "earningForTheDay" : 14.5
+}

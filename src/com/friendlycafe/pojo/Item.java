@@ -6,9 +6,6 @@ package com.friendlycafe.pojo;
 
 import java.util.Objects;
 
-;/**
- * This class contains details about an item that is in the menu
- */
 public class Item {
 	public String itemId;
 	public String name;

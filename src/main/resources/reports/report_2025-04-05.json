@@ -1,0 +1,46 @@
+{
+  "data" : [ {
+    "itemId" : "D002",
+    "itemName" : "Chocolate Chip Cookies",
+    "itemCost" : 3.6,
+    "count" : 1,
+    "totalCost" : 3.6
+  }, {
+    "itemId" : "B802",
+    "itemName" : "Mocha",
+    "itemCost" : 4.5,
+    "count" : 1,
+    "totalCost" : 4.5
+  }, {
+    "itemId" : "F002",
+    "itemName" : "Cheese Bagel",
+    "itemCost" : 4.2,
+    "count" : 1,
+    "totalCost" : 4.2
+  }, {
+    "itemId" : "F003",
+    "itemName" : "Chicken Caesar Salad",
+    "itemCost" : 5.0,
+    "count" : 1,
+    "totalCost" : 5.0
+  }, {
+    "itemId" : "B101",
+    "itemName" : "Iced Americano",
+    "itemCost" : 3.1,
+    "count" : 1,
+    "totalCost" : 3.1
+  }, {
+    "itemId" : "D005",
+    "itemName" : "Cinnamon Roll",
+    "itemCost" : 3.0,
+    "count" : 1,
+    "totalCost" : 3.0
+  }, {
+    "itemId" : "B003",
+    "itemName" : "Americano",
+    "itemCost" : 4.0,
+    "count" : 1,
+    "totalCost" : 4.0
+  } ],
+  "earningForTheDay" : 27.399999618530273
+}

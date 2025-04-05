@@ -7,9 +7,6 @@ package com.friendlycafe.pojo;
 import java.util.HashMap;
 
 
-/**
- * This class contains about the orders
- */
 public class Order {
 	private String orderId;
 	private String customerId;

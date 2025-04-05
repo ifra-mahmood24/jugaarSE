@@ -1,0 +1,13 @@
+{
+  "orders" : [ {
+    "orderId" : "ORD241319323",
+    "customerId" : "asd@.com",
+    "timeStamp" : "2025-04-06T00:45:16.722341",
+    "orderedItems" : {
+      "F002" : 1
+    },
+    "offeredItems" : null,
+    "cost" : 4.199999809265137,
+    "discounted" : false
+  } ]
+}

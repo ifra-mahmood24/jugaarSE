@@ -1,8 +1,5 @@
 package com.friendlycafe.model;
 
-/**
- * Represents a staff member in the cafe
- */
 public class Staff {
     private String id;
     private String name;

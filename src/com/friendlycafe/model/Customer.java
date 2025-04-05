@@ -2,9 +2,7 @@ package com.friendlycafe.model;
 
 import com.friendlycafe.pojo.Order;
 
-/**
- * Modified Customer class to support the simulation
- */
+
 public class Customer {
     private String mailId;
     private String name;

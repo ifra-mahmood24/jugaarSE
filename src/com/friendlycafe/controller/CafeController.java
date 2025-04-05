@@ -20,8 +20,6 @@ import com.friendlycafe.pojo.Order;
 /**
  * 
  */
-
-//Whatever customer can see(if ordering) comes under this class  
 public class CafeController {
 
 	private DataService dataService = new DataService();
@@ -67,16 +65,9 @@ public class CafeController {
 	
 		Order order = constructOrder(customerMailId, orderedItems,isOffered, cost);		
 		
-		return dataService.saveOrder(order);
+		return dataService.saveAsActiveOrder(order);
 		
 	}
-	
-	public void takeOrder(ArrayBlockingQueue<Order> orderQueue) {
-		
-		cafeService.takeOrder(orderQueue);
-		
-	}
-
 	
 	public Order saveOrder(String customerMailId,  HashMap<String, Integer> orderedItems, boolean isOffered, double cost) {
 						

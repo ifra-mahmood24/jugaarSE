@@ -47,6 +47,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -60,9 +61,6 @@ import com.friendlycafe.pojo.Item;
 import com.friendlycafe.service.DataService;
 import com.friendlycafe.service.LogService;
 
-/**
- * Redesigned FriendlyCafe class with improved UI layout
- */
 public class FriendlyCafe {
     // Define color palette
     private static final Color DARK_RED = new Color(139, 0, 0);
@@ -73,10 +71,8 @@ public class FriendlyCafe {
     
     // Services
     private DataService dataService;
-    private CafeService cafeService;
     private CafeController cafeController;
     private LogService logService;
-    
     // UI Components
     private JFrame parentFrame;
     private JFrame frame;
@@ -110,7 +106,6 @@ public class FriendlyCafe {
     public FriendlyCafe(JFrame parentFrame) {
         // Initialize services
         dataService = new DataService();
-        cafeService = new CafeService();
         cafeController = new CafeController();
         logService = LogService.getInstance();
         
@@ -199,38 +194,39 @@ public class FriendlyCafe {
         try {
             // Load menu items from DataService
             menuItems = dataService.getMenu();
+            logService.log("Menui Items size : "+ menuItems.size());
             
-            if (menuItems == null || menuItems.isEmpty()) {
-                // logService.log("WARNING: Menu items list is empty or null!");
-                logService.log("Creating dummy menu items for testing");
-                menuItems = new ArrayList<>();
+	            if (menuItems == null || menuItems.isEmpty()) {
+//                 logService.log("WARNING: Menu items list is empty or null!");
+//                logService.log("Creating dummy menu items for testing");
+//                menuItems = new ArrayList<>();
                 
                 // Create a few sample food items
-                menuItems.add(new Item("F001", "Caesar Salad", "Fresh salad with Caesar dressing", 3.00f));
-                menuItems.add(new Item("F002", "Cheese Bagel", "Toasted bagel with cream cheese", 4.20f));
-                menuItems.add(new Item("F003", "Chicken Caesar Salad", "Grilled chicken, lettuce, croutons, parmesan and eggs, dressed with olive oil, lemon juice and Worcestershire sauce", 5.00f));
-                menuItems.add(new Item("F004", "Club Sandwich", "White bread with chicken, lettuce, tomato and mayonnaise inside", 5.30f));
-                menuItems.add(new Item("F005", "Crisps", "Proper Crisps", 1.50f));
-                menuItems.add(new Item("F006", "Egg Mayonnaise Sandwich", "White bread with eggs and mayonnaise with seasonings inside", 5.00f));
+//                menuItems.add(new Item("F001", "Caesar Salad", "Fresh salad with Caesar dressing", 3.00f));
+//                menuItems.add(new Item("F002", "Cheese Bagel", "Toasted bagel with cream cheese", 4.20f));
+//                menuItems.add(new Item("F003", "Chicken Caesar Salad", "Grilled chicken, lettuce, croutons, parmesan and eggs, dressed with olive oil, lemon juice and Worcestershire sauce", 5.00f));
+//                menuItems.add(new Item("F004", "Club Sandwich", "White bread with chicken, lettuce, tomato and mayonnaise inside", 5.30f));
+//                menuItems.add(new Item("F005", "Crisps", "Proper Crisps", 1.50f));
+//                menuItems.add(new Item("F006", "Egg Mayonnaise Sandwich", "White bread with eggs and mayonnaise with seasonings inside", 5.00f));
                 
                 // Create a few sample beverages
-                Beverage coffee = new Beverage("B001", "Americano", "Strong coffee", 3.10f, 
-                        Beverage.TempType.HOT, Beverage.DrinkSize.TALL);
-                Beverage tea = new Beverage("B002", "Iced Tea", "Refreshing tea", 2.80f, 
-                        Beverage.TempType.COLD, Beverage.DrinkSize.GRANDE);
-                menuItems.add(coffee);
-                menuItems.add(tea);
+//                Beverage coffee = new Beverage("B001", "Americano", "Strong coffee", 3.10f, 
+//                        Beverage.TempType.HOT, Beverage.DrinkSize.TALL);
+//                Beverage tea = new Beverage("B002", "Iced Tea", "Refreshing tea", 2.80f, 
+//                        Beverage.TempType.COLD, Beverage.DrinkSize.GRANDE);
+//                menuItems.add(coffee);
+//                menuItems.add(tea);
                 
                 // Create a few sample desserts
-                Dessert cake = new Dessert("D001", "Chocolate Cake", "Rich chocolate cake", 4.50f, false);
-                Dessert cookie = new Dessert("D002", "Oatmeal Cookie", "Healthy cookie option", 2.00f, true);
-                menuItems.add(cake);
-                menuItems.add(cookie);
+//                Dessert cake = new Dessert("D001", "Chocolate Cake", "Rich chocolate cake", 4.50f, false);
+//                Dessert cookie = new Dessert("D002", "Oatmeal Cookie", "Healthy cookie option", 2.00f, true);
+//                menuItems.add(cake);
+//                menuItems.add(cookie);
                 
                 // Populate the map
-                for (Item item : menuItems) {
-                    menuItemsMap.put(item.itemId, item);
-                }
+//                for (Item item : menuItems) {
+//                    menuItemsMap.put(item.itemId, item);
+//                }
             } else {
                 logService.log("Successfully loaded " + menuItems.size() + " menu items");
                 
@@ -259,7 +255,7 @@ public class FriendlyCafe {
     /**
      * Set up the user interface
      */
-    private void setupUI() {
+    protected void setupUI() {
         // Set up the main frame
         frame = new JFrame("Friendly Cafe");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -302,26 +298,31 @@ public class FriendlyCafe {
         });
     }
     
-    /**
-     * Create the home screen
-     */
     private JPanel createHomeScreen() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(VERY_LIGHT_RED);
         
-        // Header panel
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(DARK_RED);
-        headerPanel.setPreferredSize(new Dimension(900, 100));
-        
+        headerPanel.setBackground(MEDIUM_RED);
+        headerPanel.setPreferredSize(new Dimension(300, 100));
         JLabel titleLabel = new JLabel("Welcome to Friendly Cafe");
+
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(" ");
+
+        EmptyBorder paddingBorder = new EmptyBorder(10, 10, 10, 10);
+
+        CompoundBorder compoundBorder = BorderFactory.createCompoundBorder(
+            titledBorder,
+            paddingBorder
+        );
+        
+        headerPanel.setBorder(compoundBorder);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
         titleLabel.setForeground(Color.WHITE);
         headerPanel.add(titleLabel);
         
         panel.add(headerPanel, BorderLayout.NORTH);
         
-        // Center panel
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setBackground(VERY_LIGHT_RED);
         
@@ -329,9 +330,13 @@ public class FriendlyCafe {
         welcomeLabel.setFont(new Font("Arial", Font.ITALIC, 20));
         welcomeLabel.setForeground(DARK_RED);
         
-        JButton placeOrderButton = createStyledButton("Place Order", MEDIUM_RED, Color.BLACK);
-        placeOrderButton.setPreferredSize(new Dimension(200, 50));
-        placeOrderButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
+        JButton showMenuButton = createStyledButton("Show Menu", MEDIUM_RED, Color.BLACK);
+        showMenuButton.setBorder(BorderFactory.createCompoundBorder(
+	               BorderFactory.createLineBorder(DARK_RED, 3, true),
+	               BorderFactory.createEmptyBorder(2, 7, 2, 7)
+	           ));
+        showMenuButton.setPreferredSize(new Dimension(200, 50));
+        showMenuButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -340,13 +345,13 @@ public class FriendlyCafe {
         centerPanel.add(welcomeLabel, gbc);
         
         gbc.gridy = 1;
-        centerPanel.add(placeOrderButton, gbc);
+        centerPanel.add(showMenuButton, gbc);
         
         panel.add(centerPanel, BorderLayout.CENTER);
         
         // Footer panel
         JPanel footerPanel = new JPanel();
-        footerPanel.setBackground(DARK_RED);
+        footerPanel.setBackground(MEDIUM_RED);
         footerPanel.setPreferredSize(new Dimension(900, 50));
         
         JLabel footerLabel = new JLabel("© 2025 Friendly Cafe");
@@ -380,22 +385,24 @@ public class FriendlyCafe {
         panel.add(topMenuBar, BorderLayout.NORTH);
         
         // Create the bottom buttons panel
-        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        bottomButtonsPanel.setBackground(MEDIUM_RED);
+        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomButtonsPanel.setBackground(LIGHT_RED);
         bottomButtonsPanel.setPreferredSize(new Dimension(900, 50));
         
-        JButton homeButton = createStyledButton("Home", DARK_RED, Color.BLACK);
+        JButton homeButton = createStyledButton("Back", DARK_RED, Color.BLACK);
         homeButton.addActionListener(e -> cardLayout.show(mainPanel, "HOME"));
         
         JButton placeOrderButton = createStyledButton("Place Order", DARK_RED, Color.BLACK);
+        placeOrderButton.setBorder(BorderFactory.createCompoundBorder(
+	               BorderFactory.createLineBorder(DARK_RED, 3, true),
+	               BorderFactory.createEmptyBorder(2, 7, 2, 7)
+	           ));        
         placeOrderButton.addActionListener(e -> {
-            // if (orderingItems.isEmpty()) {
-            //     JOptionPane.showMessageDialog(frame, "Please add items to your cart first", 
-            //             "Empty Cart", JOptionPane.WARNING_MESSAGE);
-            // } else {
-            //     cardLayout.show(mainPanel, "PAYMENT");
-            // }
-            cardLayout.show(mainPanel, "PAYMENT");
+             if (orderingItems.isEmpty()) {
+                 JOptionPane.showMessageDialog(frame, "Please add items to your cart first", 
+                         "Empty Cart", JOptionPane.WARNING_MESSAGE);
+             } else 
+                 cardLayout.show(mainPanel, "PAYMENT");
         });
         
         bottomButtonsPanel.add(homeButton);
@@ -507,11 +514,18 @@ public class FriendlyCafe {
         JLabel titleLabel = new JLabel("Payment Information");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
-        headerPanel.add(titleLabel);
         
+        headerPanel.add(titleLabel);
+        headerPanel.setBorder(BorderFactory.createTitledBorder(
+			    BorderFactory.createLineBorder(DARK_RED),  
+			    " ",                            
+			    TitledBorder.CENTER,          
+			    TitledBorder.CENTER,              
+			    new Font("Arial", Font.BOLD, 12),  
+			    DARK_RED
+			));
         panel.add(headerPanel, BorderLayout.NORTH);
         
-        // Center panel with payment form
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setBackground(VERY_LIGHT_RED);
         
@@ -586,13 +600,18 @@ public class FriendlyCafe {
         
         // Bottom panel with buttons
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        bottomPanel.setBackground(MEDIUM_RED);
+        bottomPanel.setBackground(LIGHT_RED);
         bottomPanel.setPreferredSize(new Dimension(900, 70));
         
-        JButton cancelButton = createStyledButton("Cancel", DARK_RED, Color.BLACK);
-        cancelButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
+        JButton backButton = createStyledButton("Back", DARK_RED, Color.BLACK);
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "ORDER"));
         
         JButton confirmButton = createStyledButton("Confirm Order", DARK_RED, Color.BLACK);
+        confirmButton.setBorder(BorderFactory.createCompoundBorder(
+	               BorderFactory.createLineBorder(DARK_RED, 3, true),
+	               BorderFactory.createEmptyBorder(2, 7, 2, 7)
+	           ));        
+
         confirmButton.addActionListener(e -> {
             customerName = nameField.getText();
             customerEmail = emailField.getText();
@@ -601,6 +620,18 @@ public class FriendlyCafe {
                 JOptionPane.showMessageDialog(frame, "Please fill in all fields", 
                         "Missing Information", JOptionPane.WARNING_MESSAGE);
                 return;
+            }
+            if(customerEmail.length() <= 5) {
+                JOptionPane.showMessageDialog(frame, "Mail Id Length is insufficient. Please enter valid e-mail ID", 
+                        "Missing Information", JOptionPane.WARNING_MESSAGE);            	
+                return;            	
+            }
+
+            else if((!(customerEmail.lastIndexOf(".") > 2) && 
+            		!customerEmail.contains("@"))) {
+                JOptionPane.showMessageDialog(frame, "Invalid Mail ID. Please enter valid e-mail ID", 
+                        "Missing Information", JOptionPane.WARNING_MESSAGE);
+                return;            	
             }
             
             try {
@@ -617,7 +648,7 @@ public class FriendlyCafe {
                 boolean isOffered = billCost != discountedCost;
                 
                 // Save the order
-                cafeController.saveOrder(customerEmail, orderingItems, isOffered, discountedCost);
+                cafeController.saveAsActiveOrder(customerEmail, orderingItems, isOffered, discountedCost);
                 logService.log("Order saved successfully");
 
                 // Update bill screen and show it
@@ -626,19 +657,28 @@ public class FriendlyCafe {
 
                 cardLayout.show(mainPanel, "BILL");
 
-                
+                orderingItems = null;
+                nameField.setText("");
+                emailField.setText("");
                 // Log order
                 logService.log("Order completed by " + customerName + " (" + customerEmail + ") for " + 
                         currencyFormat.format(discountedCost));
-                
             } catch (CustomerFoundException | InvalidMailFormatException ex) {
                 JOptionPane.showMessageDialog(frame, "Error processing order: " + ex.getMessage(), 
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         
-        bottomPanel.add(cancelButton);
-        bottomPanel.add(Box.createHorizontalStrut(30));
+        bottomPanel.add(backButton);
+        bottomPanel.add(Box.createHorizontalStrut(100));
+        bottomPanel.setBorder(BorderFactory.createTitledBorder(
+			    BorderFactory.createLineBorder(LIGHT_RED),  
+			    " ",                            
+			    TitledBorder.CENTER,          
+			    TitledBorder.CENTER,              
+			    new Font("Arial", Font.BOLD, 12),  
+			    LIGHT_RED
+			));
         bottomPanel.add(confirmButton);
         
         panel.add(bottomPanel, BorderLayout.SOUTH);
@@ -683,18 +723,14 @@ public class FriendlyCafe {
         bottomPanel.setBackground(MEDIUM_RED);
         bottomPanel.setPreferredSize(new Dimension(900, 70));
         
-        JButton homeButton = createStyledButton("Return to Home", DARK_RED, Color.BLACK);
-        homeButton.addActionListener(e -> {
-            // Reset order data
-            orderingItems.clear();
-            totalCost = 0.0;
-            discountedCost = 0.0;
-            
-            // Go to home screen
-            cardLayout.show(mainPanel, "HOME");
+
+        JButton closeButton = createStyledButton("Close", DARK_RED, Color.BLACK);
+        closeButton.addActionListener(e -> {
+            frame.setVisible(false);        	
+            new CafeSimulation(true);
         });
-        
-        bottomPanel.add(homeButton);
+
+        bottomPanel.add(closeButton);
         
         panel.add(bottomPanel, BorderLayout.SOUTH);
         

@@ -6,9 +6,7 @@ package com.friendlycafe.pojo;
 
 import java.util.Objects;
 
-/**
- * 
- */
+
 public class Report {
 
 

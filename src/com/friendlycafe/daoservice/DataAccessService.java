@@ -56,7 +56,7 @@ public class DataAccessService {
 	public void writeJSONFileForOrders(String path, ArrayList<Order> list) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            logger.info("Writing... "+list);
+            logger.info("Writing List of size ... "+list.size()+" to "+ path );
         	OrderDTO orders = new OrderDTO();
         	orders.setOrders(list);
 			objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), orders);

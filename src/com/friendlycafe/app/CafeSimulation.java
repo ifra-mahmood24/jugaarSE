@@ -153,10 +153,10 @@ public class CafeSimulation {
         
         // Control buttons
         JButton startButton = new JButton("Open Shop");
-            startButton.addActionListener(e -> {             
-                // Launch the FriendlyCafe GUI with the frame reference
-                SwingUtilities.invokeLater(() -> new FriendlyCafe(frame));
-            });
+        startButton.addActionListener(e -> {
+            // Launch the FriendlyCafe GUI with the frame reference
+            SwingUtilities.invokeLater(() -> new FriendlyCafe(frame));
+        });
         
         JButton stopButton = new JButton("Close Shop");
         stopButton.addActionListener(e -> closeShop());

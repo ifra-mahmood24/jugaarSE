@@ -982,12 +982,7 @@ public class FriendlyCafe {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        // Create and show the application
-        SwingUtilities.invokeLater(() -> new FriendlyCafe());
-=======
         // Create and show the application
         SwingUtilities.invokeLater(() -> new FriendlyCafe(null));
->>>>>>> Stashed changes
     }
 }

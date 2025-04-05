@@ -49,9 +49,16 @@ public class DataService {
      */
     public ArrayList<Item> getMenu() {
         try {
-            JSONArray foodItemListAsObject = daoService.readJSONFile("src/main/resources/foodMenu.json", "foodItems");
-            JSONArray beverageItemListAsObject = daoService.readJSONFile("src/main/resources/beverageMenu.json", "beverageItems");
-            JSONArray dessertItemListAsObject = daoService.readJSONFile("src/main/resources/dessertMenu.json", "dessertItems");
+
+            String foodPath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
+            String beveragePath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
+            String dessertPath = getClass().getClassLoader().getResource("foodMenu.json").getPath();
+            JSONArray foodItemListAsObject = daoService.readJSONFile(foodPath, "foodItems");
+            JSONArray beverageItemListAsObject = daoService.readJSONFile(beveragePath, "beverageItems");
+            JSONArray dessertItemListAsObject = daoService.readJSONFile(dessertPath,  "dessertItems");
+            // JSONArray foodItemListAsObject = daoService.readJSONFile("/src/main/resources/foodMenu.json", "foodItems");
+            // JSONArray beverageItemListAsObject = daoService.readJSONFile("/src/main/resources/beverageMenu.json", "beverageItems");
+            // JSONArray dessertItemListAsObject = daoService.readJSONFile("/src/main/resources/dessertMenu.json", "dessertItems");
 
             ArrayList<Item> foodItemList = new ArrayList<>();
             ArrayList<Item> beverageItemList = new ArrayList<>();

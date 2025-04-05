@@ -12,8 +12,6 @@ import java.util.concurrent.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-
-
 import com.friendlycafe.model.Customer;
 import com.friendlycafe.pojo.Item;
 import com.friendlycafe.pojo.Order;
@@ -21,12 +19,11 @@ import com.friendlycafe.service.LogService;
 import com.friendlycafe.controller.CafeController;
 import com.friendlycafe.dtoservice.CafeService;
 import com.friendlycafe.service.DataService;
-import com.friendlycafe.service.LogService;
-
 
 /**
  * CafeSimulator class implements the Stage 2 requirements for the coffee shop simulation.
  * It handles threading, queue management, and GUI display for the simulation.
+ * Modified to open FriendlyCafe GUI when "Open Shop" is clicked
  */
 public class CafeSimulation {
     
@@ -113,15 +110,15 @@ public class CafeSimulation {
         frame.add(mainPanel, BorderLayout.CENTER);
         
         // Create log panel
-//        JPanel logPanel = new JPanel(new BorderLayout());
-//        logPanel.setBorder(BorderFactory.createTitledBorder("Event Log"));
-//        logTextArea = new JTextArea();
-//        logTextArea.setEditable(false);
-//        JScrollPane logScrollPane = new JScrollPane(logTextArea);
-//        logScrollPane.setPreferredSize(new Dimension(600, 150));
-//        logPanel.add(logScrollPane, BorderLayout.CENTER);
-//        
-//        frame.add(logPanel, BorderLayout.SOUTH);
+        JPanel logPanel = new JPanel(new BorderLayout());
+        logPanel.setBorder(BorderFactory.createTitledBorder("Event Log"));
+        logTextArea = new JTextArea();
+        logTextArea.setEditable(false);
+        JScrollPane logScrollPane = new JScrollPane(logTextArea);
+        logScrollPane.setPreferredSize(new Dimension(600, 150));
+        logPanel.add(logScrollPane, BorderLayout.CENTER);
+        
+        frame.add(logPanel, BorderLayout.SOUTH);
         
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -156,14 +153,14 @@ public class CafeSimulation {
         
         // Control buttons
         JButton startButton = new JButton("Open Shop");
-        startButton.addActionListener(e -> openShop());
+            startButton.addActionListener(e -> {             
+                // Launch the FriendlyCafe GUI with the frame reference
+                SwingUtilities.invokeLater(() -> new FriendlyCafe(frame));
+            });
         
         JButton stopButton = new JButton("Close Shop");
         stopButton.addActionListener(e -> closeShop());
         
-        JButton placeOrderButton = new JButton("Place New Order");
-        placeOrderButton.addActionListener(e -> openOrderDialog());
-                
         // Add components to panel
         panel.add(staffLabel);
         panel.add(staffSpinner);
@@ -171,7 +168,6 @@ public class CafeSimulation {
         panel.add(timeSpinner);
         panel.add(startButton);
         panel.add(stopButton);
-        panel.add(placeOrderButton);
         
         return panel;
     }
@@ -185,7 +181,6 @@ public class CafeSimulation {
         }
         
         LogService.getInstance().log("Simulation started with " + numberOfStaff + " staff members");
-        
         
         simulationRunning = true;
         
@@ -368,43 +363,6 @@ public class CafeSimulation {
     }
     
     /**
-     * Open a dialog to place a new order
-     */
-    private void openOrderDialog() {
-        FriendlyCafe orderApp = new FriendlyCafe();
-        // The FriendlyCafe app handles order creation and saving
-    }
-    
-    
-    /**
-     * Update the log display with the latest entries
-     */
-//    private void updateLogDisplay() {
-//        SwingUtilities.invokeLater(() -> {
-//            logTextArea.setText(String.join("\n" +  logService.getLogEntries()));
-//            // Scroll to the bottom
-//            logTextArea.setCaretPosition(logTextArea.getDocument().getLength());
-//        });
-//    }
-    
-    /**
-     * Write the log to a file
-     */
-//    private void writeLogToFile() {
-//        String fileName = "cafe_simulation_log_" + 
-//                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".txt";
-//        
-//        try (FileWriter writer = new FileWriter(fileName)) {
-//            for (String entry : logService.getLogEntries()) {
-//                writer.write(entry + "\n");
-//            }
-//            LogService.getInstance().log("Log written to file: {}" +  fileName);
-//        } catch (IOException e) {
-//            LogService.getInstance().log("Error writing log to file"+ e);
-//        }
-//    }
-    
-    /**
      * Class representing a staff member that processes orders
      */
     private class StaffMember implements Runnable {
@@ -441,9 +399,9 @@ public class CafeSimulation {
         
         @Override
         public void run() {
-        	if(terminated)
-        		dataService.generateReport();
-        	
+            if(terminated)
+                dataService.generateReport();
+            
             while (!terminated && simulationRunning) {
                 try {
                     // Try to take an order from the queue (waiting up to 1 second)
